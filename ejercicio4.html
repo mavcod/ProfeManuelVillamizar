@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicio 1 - Positivos y Negativos</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<div class="container">
+    <h2>Ejercicio 1: Valores Positivos y Negativos</h2>
+    <label>Nombre del estudiante:</label>
+    <input type="text" id="nombre" placeholder="Escribe tu nombre">
+    <div>
+        <label>Tiempo restante: </label>
+        <span id="reloj">05:00</span>
+    </div>
+    <div id="pregunta"></div>
+    <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+    <button id="btnValidar">Validar respuesta</button>
+    <div id="mensaje"></div>
+    <div id="aciertosContador">Aciertos: 0 / 20</div>
+
+    <p><a href="index.html">⬅ Volver al menú principal</a></p>
+</div>
+
+<script src="js/logica.js"></script>
+<script>
+const preguntasEj4 = [
+    { "pregunta": "La temperatura en la montaña es de 8 grados bajo 0.", "respuesta": "-8" },
+    { "pregunta": "Un submarino está a 150 metros bajo el nivel del mar.", "respuesta": "-150" },
+    { "pregunta": "Un avión vuela a 2000 metros sobre el nivel del mar.", "respuesta": "+2000" },
+    { "pregunta": "El sótano de un edificio está en el nivel 1 bajo tierra.", "respuesta": "-1" },
+    { "pregunta": "El apartamento está en el piso 12 del edificio.", "respuesta": "+12" },
+    { "pregunta": "Un buzo desciende 45 metros bajo el agua.", "respuesta": "-45" },
+    { "pregunta": "La ciudad está exactamente al nivel del mar.", "respuesta": "0" },
+    { "pregunta": "Una empresa tuvo una pérdida de 750 dólares.", "respuesta": "-750" },
+    { "pregunta": "Una empresa obtuvo una ganancia de 980 dólares.", "respuesta": "+980" },
+    { "pregunta": "El estacionamiento subterráneo está en el nivel 4 bajo tierra.", "respuesta": "-4" },
+    { "pregunta": "Pedro debe 320 dólares.", "respuesta": "-320" },
+    { "pregunta": "Ana ahorró 640 dólares.", "respuesta": "+640" },
+    { "pregunta": "Hace 15 años ocurrió ese suceso.", "respuesta": "-15" },
+    { "pregunta": "Dentro de 9 años terminaré la carrera.", "respuesta": "+9" },
+    { "pregunta": "Estamos en el año actual como punto de referencia.", "respuesta": "0" },
+    { "pregunta": "Un ascensor baja 6 pisos desde la planta baja.", "respuesta": "-6" },
+    { "pregunta": "Un globo aerostático sube 430 metros.", "respuesta": "+430" },
+    { "pregunta": "La mina se encuentra a 210 metros bajo la superficie.", "respuesta": "-210" },
+    { "pregunta": "El mirador está a 95 metros sobre el nivel del mar.", "respuesta": "+95" },
+    { "pregunta": "Un edificio está en la planta baja.", "respuesta": "0" },
+    { "pregunta": "La temperatura en el polo es de 20 grados bajo 0.", "respuesta": "-20" },
+    { "pregunta": "Un pez nada a 60 metros bajo el nivel del mar.", "respuesta": "-60" },
+    { "pregunta": "Un helicóptero vuela a 850 metros sobre el nivel del mar.", "respuesta": "+850" },
+    { "pregunta": "El sótano 3 está bajo tierra.", "respuesta": "-3" },
+    { "pregunta": "El apartamento está en el piso 5.", "respuesta": "+5" },
+    { "pregunta": "Un buzo baja 90 metros.", "respuesta": "-90" },
+    { "pregunta": "La playa está al nivel del mar.", "respuesta": "0" },
+    { "pregunta": "La empresa perdió 1200 dólares.", "respuesta": "-1200" },
+    { "pregunta": "La empresa ganó 1500 dólares.", "respuesta": "+1500" },
+    { "pregunta": "El parqueadero subterráneo está en el nivel 2.", "respuesta": "-2" },
+    { "pregunta": "Carlos debe 50 dólares.", "respuesta": "-50" },
+    { "pregunta": "Laura ahorró 120 dólares.", "respuesta": "+120" },
+    { "pregunta": "El año 44 AC fue el asesinato de Julio César.", "respuesta": "-44" },
+    { "pregunta": "El año 1492 DC fue el descubrimiento de América.", "respuesta": "+1492" },
+    { "pregunta": "Dentro de 4 años compraré una casa.", "respuesta": "+4" },
+    { "pregunta": "Estamos en el presente.", "respuesta": "0" },
+    { "pregunta": "El ascensor sube 7 pisos.", "respuesta": "+7" },
+    { "pregunta": "Un dron vuela a 300 metros de altura.", "respuesta": "+300" },
+    { "pregunta": "La cueva está a 40 metros bajo tierra.", "respuesta": "-40" },
+    { "pregunta": "El faro está a 25 metros sobre el nivel del mar.", "respuesta": "+25" },
+    { "pregunta": "La temperatura subió 6 grados sobre 0.", "respuesta": "+6" }
+];
+
+// Iniciar prueba con 20 aciertos necesarias
+window.onload = () => iniciarPrueba(preguntasEj4, 20);
+</script>
+</body>
+</html>
