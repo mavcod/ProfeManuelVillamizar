@@ -4,8 +4,60 @@
 <meta charset="UTF-8">
 <title>Ejercicio 3</title>
 <style>
-  body { font-family: Arial, sans-serif; margin: 20px; }
-  #mensaje { margin-top: 10px; font-weight: bold; }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    color: #0066cc;
+  }
+  input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    margin-top: 10px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  button:hover {
+    background-color: #004c99;
+  }
+  #pregunta {
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  #mensaje {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  #timer {
+    font-size: 22px;
+    font-weight: bold;
+    color: #cc0000;
+  }
+  a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 </style>
 </head>
 <body>
@@ -13,13 +65,13 @@
 
 <label>Nombre del estudiante: <input type="text" id="nombre"></label>
 <div>Tiempo restante: <span id="timer">05:00</span></div>
-<div id="pregunta" style="margin-top:10px; font-size:18px;"></div>
+<div id="pregunta"></div>
 <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
 <button id="validar">Validar</button>
 <div id="mensaje"></div>
 
 <!-- Enlace para volver al menú principal -->
-<p><a href="index.html">⬅ Volver al menú principal</a></p>
+<a href="index.html">⬅ Volver al menú principal</a>
 
 <script>
 const preguntas = [
@@ -88,6 +140,7 @@ const preguntas = [
 let aciertos = 0;
 let tiempo = 300; // 5 minutos en segundos
 let currentPregunta = null;
+
 const timerDisplay = document.getElementById("timer");
 const preguntaDiv = document.getElementById("pregunta");
 const respuestaInput = document.getElementById("respuesta");
@@ -111,7 +164,7 @@ function mostrarPregunta() {
 function validarRespuesta() {
   if (respuestaInput.value.trim() === currentPregunta.res) {
     aciertos++;
-    mensajeDiv.textContent = `Correcto! Llevas ${aciertos} aciertos.`;
+    mensajeDiv.textContent = `✅ Correcto! Llevas ${aciertos} aciertos.`;
     if (aciertos >= 5) {
       mensajeDiv.textContent = "🎉 Felicidades! Pasaste la prueba!";
       clearInterval(timerInterval);
@@ -119,7 +172,7 @@ function validarRespuesta() {
       mostrarPregunta();
     }
   } else {
-    mensajeDiv.textContent = `Incorrecto! La respuesta correcta era ${currentPregunta.res}. Se reinicia la prueba.`;
+    mensajeDiv.textContent = `❌ Incorrecto! La respuesta correcta era ${currentPregunta.res}. Se reinicia la prueba.`;
     reiniciarPrueba();
   }
 }
@@ -150,3 +203,4 @@ mostrarPregunta();
 </script>
 </body>
 </html>
+
