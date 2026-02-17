@@ -2,205 +2,148 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Ejercicio 3</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
-    color: #333;
-    text-align: center;
-    padding: 20px;
-  }
-  h1 {
-    color: #0066cc;
-  }
-  input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    width: 200px;
-    margin-top: 10px;
-  }
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin-left: 10px;
-    background-color: #0066cc;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  button:hover {
-    background-color: #004c99;
-  }
-  #pregunta {
-    font-size: 20px;
-    margin-top: 20px;
-    font-weight: bold;
-  }
-  #mensaje {
-    margin-top: 15px;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  #timer {
-    font-size: 22px;
-    font-weight: bold;
-    color: #cc0000;
-  }
-  a {
-    display: inline-block;
-    margin-top: 20px;
-    color: #0066cc;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicio 3 - Sumas y Restas Avanzadas</title>
+<link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
-<h1>Ejercicio 3</h1>
+<div class="container">
+    <h2>Ejercicio 3: Sumas y Restas con Paréntesis</h2>
+    <label>Nombre del estudiante:</label>
+    <input type="text" id="nombre" placeholder="Escribe tu nombre">
+    <div>
+        <label>Tiempo restante: </label>
+        <span id="reloj">05:00</span>
+    </div>
+    <div id="pregunta"></div>
+    <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+    <button id="btnValidar">Validar respuesta</button>
+    <div id="mensaje"></div>
+    <div id="aciertosContador">Aciertos: 0 / 5</div>
 
-<label>Nombre del estudiante: <input type="text" id="nombre"></label>
-<div>Tiempo restante: <span id="timer">05:00</span></div>
-<div id="pregunta"></div>
-<input type="text" id="respuesta" placeholder="Escribe tu respuesta">
-<button id="validar">Validar</button>
-<div id="mensaje"></div>
-
-<!-- Enlace para volver al menú principal -->
-<a href="index.html">⬅ Volver al menú principal</a>
+    <p><a href="index.html">⬅ Volver al menú principal</a></p>
+</div>
 
 <script>
-const preguntas = [
-  {"preg":"-4 + (-5) + 3 - (-2)","res":"-4"},
-  {"preg":"6 - (-3) + (-2) - 5","res":"4"},
-  {"preg":"-7 - (-4) + 6 + (-3)","res":"0"},
-  {"preg":"8 + (-2) - (-5) + (-3)","res":"8"},
-  {"preg":"9 - (-6) + 2 - (-4)","res":"21"},
-  {"preg":"-5 + (-7) - (-3) + 4","res":"-5"},
-  {"preg":"7 - (-2) + (-5) - (-1)","res":"5"},
-  {"preg":"-3 + 6 - (-4) + (-2)","res":"5"},
-  {"preg":"4 - (-3) + (-6) - 2","res":"-1"},
-  {"preg":"-6 + (-2) - (-5) + 3","res":"0"},
-  {"preg":"5 - (-4) + (-3) - (-2)","res":"8"},
-  {"preg":"-8 + (-1) + 7 - (-3)","res":"1"},
-  {"preg":"3 - (-5) + (-4) - (-6)","res":"10"},
-  {"preg":"-2 + (-3) + 5 - (-1)","res":"1"},
-  {"preg":"6 - (-2) + (-7) - 4","res":"-3"},
-  {"preg":"-9 + (-2) + 3 - (-6)","res":"-2"},
-  {"preg":"7 - (-3) + (-1) - (-5)","res":"14"},
-  {"preg":"-4 + (-6) - (-2) + 1","res":"-7"},
-  {"preg":"5 - (-5) + (-3) - (-4)","res":"11"},
-  {"preg":"-7 + (-3) + 6 - (-2)","res":"-2"},
-  {"preg":"8 - (-4) + (-5) - 3","res":"4"},
-  {"preg":"-3 + (-7) + 2 - (-1)","res":"-7"},
-  {"preg":"6 - (-5) + (-4) - (-2)","res":"9"},
-  {"preg":"-2 + (-6) - (-3) + 5","res":"0"},
-  {"preg":"4 - (-2) + (-7) - (-1)","res":"0"},
-  {"preg":"-5 + (-3) + 4 - (-6)","res":"2"},
-  {"preg":"7 - (-1) + (-5) - (-3)","res":"6"},
-  {"preg":"-6 + (-2) - (-4) + 3","res":"-1"},
-  {"preg":"5 - (-3) + (-6) - (-2)","res":"4"},
-  {"preg":"-4 + (-5) + 3 - (-1)","res":"-5"},
-  {"preg":"6 - (-2) + (-3) - (-4)","res":"9"},
-  {"preg":"-7 + (-1) - (-5) + 2","res":"-1"},
-  {"preg":"8 - (-3) + (-6) - (-2)","res":"7"},
-  {"preg":"-3 + (-4) + 5 - (-2)","res":"0"},
-  {"preg":"7 - (-2) + (-1) - (-3)","res":"11"},
-  {"preg":"-5 + (-6) - (-2) + 4","res":"-5"},
-  {"preg":"6 - (-4) + (-3) - (-1)","res":"8"},
-  {"preg":"-2 + (-5) + 7 - (-3)","res":"3"},
-  {"preg":"5 - (-3) + (-4) - (-2)","res":"6"},
-  {"preg":"-6 + (-1) - (-5) + 3","res":"1"},
-  {"preg":"8 - (-2) + (-6) - (-4)","res":"8"},
-  {"preg":"-3 + (-7) + 2 - (-5)","res":"-3"},
-  {"preg":"7 - (-1) + (-3) - (-2)","res":"7"},
-  {"preg":"-4 + (-2) - (-6) + 5","res":"5"},
-  {"preg":"6 - (-3) + (-5) - (-1)","res":"5"},
-  {"preg":"-5 + (-4) + 3 - (-2)","res":"-4"},
-  {"preg":"9 - (-2) + (-6) - (-3)","res":"8"},
-  {"preg":"-6 + (-3) - (-2) + 4","res":"-3"},
-  {"preg":"5 - (-5) + (-4) - (-1)","res":"7"},
-  {"preg":"-7 + (-2) + 6 - (-3)","res":"0"},
-  {"preg":"8 - (-1) + (-5) - (-2)","res":"6"},
-  {"preg":"-3 + (-6) - (-4) + 2","res":"-3"},
-  {"preg":"6 - (-4) + (-2) - (-5)","res":"13"},
-  {"preg":"-2 + (-5) + 4 - (-3)","res":"0"},
-  {"preg":"7 - (-3) + (-1) - (-6)","res":"15"},
-  {"preg":"-5 + (-2) - (-3) + 4","res":"0"},
-  {"preg":"8 - (-5) + (-6) - (-1)","res":"8"},
-  {"preg":"-4 + (-3) + 7 - (-2)","res":"2"},
-  {"preg":"6 - (-1) + (-5) - (-3)","res":"5"},
-  {"preg":"-3 + (-2) - (-6) + 5","res":"6"}
+const preguntasEj3 = [
+    {"pregunta":"-4 + (-5) + 3 - (-2)","respuesta":"-4"},
+    {"pregunta":"6 - (-3) + (-2) - 5","respuesta":"4"},
+    {"pregunta":"-7 - (-4) + 6 + (-3)","respuesta":"0"},
+    {"pregunta":"8 + (-2) - (-5) + (-3)","respuesta":"8"},
+    {"pregunta":"9 - (-6) + 2 - (-4)","respuesta":"21"},
+    {"pregunta":"-5 + (-7) - (-3) + 4","respuesta":"-5"},
+    {"pregunta":"7 - (-2) + (-5) - (-1)","respuesta":"5"},
+    {"pregunta":"-3 + 6 - (-4) + (-2)","respuesta":"5"},
+    {"pregunta":"4 - (-3) + (-6) - 2","respuesta":"-1"},
+    {"pregunta":"-6 + (-2) - (-5) + 3","respuesta":"0"},
+    {"pregunta":"5 - (-4) + (-3) - (-2)","respuesta":"8"},
+    {"pregunta":"-8 + (-1) + 7 - (-3)","respuesta":"1"},
+    {"pregunta":"3 - (-5) + (-4) - (-6)","respuesta":"10"},
+    {"pregunta":"-2 + (-3) + 5 - (-1)","respuesta":"1"},
+    {"pregunta":"6 - (-2) + (-7) - 4","respuesta":"-3"},
+    {"pregunta":"-9 + (-2) + 3 - (-6)","respuesta":"-2"},
+    {"pregunta":"7 - (-3) + (-1) - (-5)","respuesta":"14"},
+    {"pregunta":"-4 + (-6) - (-2) + 1","respuesta":"-7"},
+    {"pregunta":"5 - (-5) + (-3) - (-4)","respuesta":"11"},
+    {"pregunta":"-7 + (-3) + 6 - (-2)","respuesta":"-2"},
+    {"pregunta":"8 - (-4) + (-5) - 3","respuesta":"4"},
+    {"pregunta":"-3 + (-7) + 2 - (-1)","respuesta":"-7"},
+    {"pregunta":"6 - (-5) + (-4) - (-2)","respuesta":"9"},
+    {"pregunta":"-2 + (-6) - (-3) + 5","respuesta":"0"},
+    {"pregunta":"4 - (-2) + (-7) - (-1)","respuesta":"0"},
+    {"pregunta":"-5 + (-3) + 4 - (-6)","respuesta":"2"},
+    {"pregunta":"7 - (-1) + (-5) - (-3)","respuesta":"6"},
+    {"pregunta":"-6 + (-2) - (-4) + 3","respuesta":"-1"},
+    {"pregunta":"5 - (-3) + (-6) - (-2)","respuesta":"4"},
+    {"pregunta":"-4 + (-5) + 3 - (-1)","respuesta":"-5"},
+    {"pregunta":"6 - (-2) + (-3) - (-4)","respuesta":"9"},
+    {"pregunta":"-7 + (-1) - (-5) + 2","respuesta":"-1"},
+    {"pregunta":"8 - (-3) + (-6) - (-2)","respuesta":"7"},
+    {"pregunta":"-3 + (-4) + 5 - (-2)","respuesta":"0"},
+    {"pregunta":"7 - (-2) + (-1) - (-3)","respuesta":"11"},
+    {"pregunta":"-5 + (-6) - (-2) + 4","respuesta":"-5"},
+    {"pregunta":"6 - (-4) + (-3) - (-1)","respuesta":"8"},
+    {"pregunta":"-2 + (-5) + 7 - (-3)","respuesta":"3"},
+    {"pregunta":"5 - (-3) + (-4) - (-2)","respuesta":"6"},
+    {"pregunta":"-6 + (-1) - (-5) + 3","respuesta":"1"},
+    {"pregunta":"8 - (-2) + (-6) - (-4)","respuesta":"8"},
+    {"pregunta":"-3 + (-7) + 2 - (-5)","respuesta":"-3"},
+    {"pregunta":"7 - (-1) + (-3) - (-2)","respuesta":"7"},
+    {"pregunta":"-4 + (-2) - (-6) + 5","respuesta":"5"},
+    {"pregunta":"6 - (-3) + (-5) - (-1)","respuesta":"5"},
+    {"pregunta":"-5 + (-4) + 3 - (-2)","respuesta":"-4"},
+    {"pregunta":"9 - (-2) + (-6) - (-3)","respuesta":"8"},
+    {"pregunta":"-6 + (-3) - (-2) + 4","respuesta":"-3"},
+    {"pregunta":"5 - (-5) + (-4) - (-1)","respuesta":"7"},
+    {"pregunta":"-7 + (-2) + 6 - (-3)","respuesta":"0"},
+    {"pregunta":"8 - (-1) + (-5) - (-2)","respuesta":"6"},
+    {"pregunta":"-3 + (-6) - (-4) + 2","respuesta":"-3"},
+    {"pregunta":"6 - (-4) + (-2) - (-5)","respuesta":"13"},
+    {"pregunta":"-2 + (-5) + 4 - (-3)","respuesta":"0"},
+    {"pregunta":"7 - (-3) + (-1) - (-6)","respuesta":"15"},
+    {"pregunta":"-5 + (-2) - (-3) + 4","respuesta":"0"},
+    {"pregunta":"8 - (-5) + (-6) - (-1)","respuesta":"8"},
+    {"pregunta":"-4 + (-3) + 7 - (-2)","respuesta":"2"},
+    {"pregunta":"6 - (-1) + (-5) - (-3)","respuesta":"5"},
+    {"pregunta":"-3 + (-2) - (-6) + 5","respuesta":"6"}
 ];
 
 let aciertos = 0;
-let tiempo = 300; // 5 minutos en segundos
-let currentPregunta = null;
+let preguntaActual;
 
-const timerDisplay = document.getElementById("timer");
-const preguntaDiv = document.getElementById("pregunta");
-const respuestaInput = document.getElementById("respuesta");
-const mensajeDiv = document.getElementById("mensaje");
-
-function reiniciarPrueba() {
-  aciertos = 0;
-  tiempo = 300;
-  mensajeDiv.textContent = "";
-  mostrarPregunta();
+function iniciarPrueba() {
+    aciertos = 0;
+    document.getElementById('aciertosContador').innerText = `Aciertos: ${aciertos} / 5`;
+    mostrarPregunta();
+    iniciarReloj(5 * 60); // 5 minutos
 }
 
 function mostrarPregunta() {
-  const index = Math.floor(Math.random() * preguntas.length);
-  currentPregunta = preguntas[index];
-  preguntaDiv.textContent = currentPregunta.preg;
-  respuestaInput.value = "";
-  respuestaInput.focus();
+    preguntaActual = preguntasEj3[Math.floor(Math.random() * preguntasEj3.length)];
+    document.getElementById('pregunta').innerText = preguntaActual.pregunta;
+    document.getElementById('respuesta').value = '';
+    document.getElementById('mensaje').innerText = '';
+    document.getElementById('respuesta').focus();
 }
 
 function validarRespuesta() {
-  if (respuestaInput.value.trim() === currentPregunta.res) {
-    aciertos++;
-    mensajeDiv.textContent = `✅ Correcto! Llevas ${aciertos} aciertos.`;
-    if (aciertos >= 5) {
-      mensajeDiv.textContent = "🎉 Felicidades! Pasaste la prueba!";
-      clearInterval(timerInterval);
+    const respuestaUsuario = document.getElementById('respuesta').value.trim();
+    if (respuestaUsuario === preguntaActual.respuesta) {
+        aciertos++;
+        document.getElementById('aciertosContador').innerText = `Aciertos: ${aciertos} / 5`;
+        document.getElementById('mensaje').innerText = '¡Correcto!';
+        if (aciertos >= 5) {
+            document.getElementById('mensaje').innerText = '¡Prueba superada!';
+        } else {
+            setTimeout(mostrarPregunta, 800);
+        }
     } else {
-      mostrarPregunta();
+        document.getElementById('mensaje').innerText = 'Respuesta incorrecta';
     }
-  } else {
-    mensajeDiv.textContent = `❌ Incorrecto! La respuesta correcta era ${currentPregunta.res}. Se reinicia la prueba.`;
-    reiniciarPrueba();
-  }
 }
 
-document.getElementById("validar").addEventListener("click", validarRespuesta);
-
-respuestaInput.addEventListener("keydown", function(e){
-  if (e.key === "Enter") {
-    validarRespuesta();
-  }
+document.getElementById('btnValidar').addEventListener('click', validarRespuesta);
+document.getElementById('respuesta').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') validarRespuesta();
 });
 
-function actualizarTimer() {
-  let minutos = Math.floor(tiempo / 60);
-  let segundos = tiempo % 60;
-  timerDisplay.textContent = `${minutos.toString().padStart(2,'0')}:${segundos.toString().padStart(2,'0')}`;
-  if (tiempo <= 0) {
-    clearInterval(timerInterval);
-    mensajeDiv.textContent = "⏰ Tiempo agotado! Se reinicia la prueba.";
-    reiniciarPrueba();
-  }
-  tiempo--;
+function iniciarReloj(segundos) {
+    let tiempo = segundos;
+    const reloj = document.getElementById('reloj');
+    const intervalo = setInterval(() => {
+        let min = Math.floor(tiempo / 60);
+        let seg = tiempo % 60;
+        reloj.textContent = `${min.toString().padStart(2,'0')}:${seg.toString().padStart(2,'0')}`;
+        if (tiempo <= 0) {
+            clearInterval(intervalo);
+            alert('Se acabó el tiempo, reiniciando la prueba');
+            iniciarPrueba();
+        }
+        tiempo--;
+    }, 1000);
 }
 
-const timerInterval = setInterval(actualizarTimer, 1000);
-
-mostrarPregunta();
+window.onload = iniciarPrueba;
 </script>
 </body>
 </html>
-
