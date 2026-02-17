@@ -3,18 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pruebas de Matemáticas</title>
+<title>Menú Principal - Colegio Rodrigo Vives de Andreis</title>
 <link rel="stylesheet" href="css/estilo.css">
+<style>
+/* Estilo extra para la página principal */
+body {
+    background-color: #eaf2f8;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+h2 {
+    color: #34495e;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+p {
+    font-size: 16px;
+    color: #555555;
+    margin: 3px 0;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #3498db;
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    flex: 1 1 200px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.card:hover {
+    background-color: #2980b9;
+    transform: translateY(-5px);
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #888888;
+}
+</style>
 </head>
 <body>
 <div class="container">
-    <h1>Pruebas de Matemáticas</h1>
-    <h2>Grado Séptimo- Docente Manuel Villamizar</h2>
-    <a href="ejercicio1.html">Ejercicio 1: Sumas y Restas Simples</a>
-    <a href="ejercicio2.html">Ejercicio 2: Sumas y Restas 4 Números</a>
-     <a href="ejercicio3.html">Ejercicio 3: Sumas y Restas Con ley de signos</a>
+    <!-- Logo opcional -->
+    <img src="img/logo.png" alt="Logo del Colegio" class="logo">
+
+    <h1>Colegio Rodrigo Vives de Andreis</h1>
+    <h2>Matemáticas - Año 2026</h2>
+    <p>Docente: Manuel Villamizar</p>
+
+    <div class="menu">
+        <a href="ejercicio1.html" class="card">Ejercicio 1: Sumas y Restas Simples</a>
+        <a href="ejercicio2.html" class="card">Ejercicio 2: Sumas y Restas Múltiples</a>
+        <a href="ejercicio3.html" class="card">Ejercicio 3: Operaciones Combinadas</a>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Colegio Rodrigo Vives de Andreis
+    </div>
 </div>
 </body>
 </html>
+
+
 
 
