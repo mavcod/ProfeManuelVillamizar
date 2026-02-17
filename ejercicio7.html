@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicio 7 - Operaciones Combinadas</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<div class="container">
+    <h2>Ejercicio 7: Operaciones Combinadas con Signos</h2>
+    <label>Nombre del estudiante:</label>
+    <input type="text" id="nombre" placeholder="Escribe tu nombre">
+    <div>
+        <label>Tiempo restante: </label>
+        <span id="reloj">05:00</span>
+    </div>
+    <div id="pregunta"></div>
+    <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+    <button id="btnValidar">Validar respuesta</button>
+    <div id="mensaje"></div>
+    <div id="aciertosContador">Aciertos: 0 / 3</div>
+
+    <p><a href="index.html">⬅ Volver al menú principal</a></p>
+</div>
+
+<script src="js/logica.js"></script>
+<script>
+const preguntasEj7 = [
+    { "pregunta": "10 + 5*2 - 20÷(-2) + (-2)", "respuesta": "+28" },
+    { "pregunta": "(-12) + 18÷3 * (-2) - 4", "respuesta": "-28" },
+    { "pregunta": "15 - 3*4 + (-6)÷2", "respuesta": "0" },
+    { "pregunta": "(-10) + 4*3 - (-8)÷2", "respuesta": "+6" },
+    { "pregunta": "20÷5 + 3*4 - 7", "respuesta": "+9" },
+    { "pregunta": "(-12)÷3 + 5*2 - (-4)", "respuesta": "+10" },
+    { "pregunta": "8 + (-6)*2 ÷ 2 - 1", "respuesta": "+1" },
+    { "pregunta": "(-15) + 6÷2 * 4 - 5", "respuesta": "-8" },
+    { "pregunta": "9*2 - (-12)÷3 + (-3)", "respuesta": "+19" },
+    { "pregunta": "(-20)÷5 + 7*3 - 4", "respuesta": "+13" },
+    { "pregunta": "6*5 - (-10)÷2 + (-6)", "respuesta": "+29" },
+    { "pregunta": "(-18) + 9÷3 * (-2) + 5", "respuesta": "-19" },
+    { "pregunta": "12 - (-6)*2 + 8 ÷ (-4)", "respuesta": "+22" },
+    { "pregunta": "(-14) + 8*2 - 12 ÷ (-3)", "respuesta": "+6" },
+    { "pregunta": "7 + 3*5 - (-15) ÷ 5", "respuesta": "+25" },
+    { "pregunta": "(-10)÷2 + 6*3 - 4", "respuesta": "+9" },
+    { "pregunta": "15 - (-8) ÷ 2 + 3*4", "respuesta": "+31" },
+    { "pregunta": "(-9) + 12 ÷ 4 * (-3) + 6", "respuesta": "-12" },
+    { "pregunta": "20 ÷ (-5) + 8*2 - 7", "respuesta": "+5" },
+    { "pregunta": "(-16) + 10 ÷ 2 * 3 - 4", "respuesta": "-5" },
+    { "pregunta": "5*4 - (-6) ÷ 3 + (-2)", "respuesta": "+20" },
+    { "pregunta": "(-12) ÷ 4 + 3*5 - 7", "respuesta": "+5" },
+    { "pregunta": "10 + (-8)*2 ÷ 4 - 3", "respuesta": "+3" },
+    { "pregunta": "(-14) + 6 ÷ 3 * 5 - 2", "respuesta": "-6" },
+    { "pregunta": "8*3 - (-9) ÷ 3 + (-5)", "respuesta": "+22" },
+    { "pregunta": "(-20) ÷ 4 + 7*2 - 6", "respuesta": "+3" },
+    { "pregunta": "9 + 5*3 - (-12) ÷ 4", "respuesta": "+27" },
+    { "pregunta": "(-18) + 8 ÷ 2 * (-3) + 10", "respuesta": "-20" },
+    { "pregunta": "12 - (-6) ÷ 3 + 4*2", "respuesta": "+22" },
+    { "pregunta": "(-15) + 9*2 ÷ 3 - 5", "respuesta": "-14" },
+    { "pregunta": "7 + (-4)*3 + 12 ÷ (-2)", "respuesta": "-11" },
+    { "pregunta": "(-10) + 5*4 - 20 ÷ (-5)", "respuesta": "+14" },
+    { "pregunta": "6*3 - (-12) ÷ 4 + (-7)", "respuesta": "+14" },
+    { "pregunta": "(-12) + 8 ÷ 2 * 3 - 5", "respuesta": "-5" },
+    { "pregunta": "15 - (-9)*2 ÷ 3 + 6", "respuesta": "+27" },
+    { "pregunta": "(-8) + 10 ÷ 2 * (-2) + 4", "respuesta": "-14" },
+    { "pregunta": "9*4 - (-16) ÷ 8 + (-3)", "respuesta": "+35" },
+    { "pregunta": "(-20) ÷ 5 + 6*3 - 7", "respuesta": "+7" },
+    { "pregunta": "12 + (-6)*2 ÷ 3 - 4", "respuesta": "+4" },
+    { "pregunta": "(-14) + 5*3 - 15 ÷ (-3)", "respuesta": "+6" },
+    { "pregunta": "8*2 - (-10) ÷ 5 + (-6)", "respuesta": "+12" },
+    { "pregunta": "(-16) + 12 ÷ 4 * 2 - 3", "respuesta": "-13" },
+    { "pregunta": "7 + 9*2 ÷ (-3) - 5", "respuesta": "-4" },
+    { "pregunta": "(-18) + 6 ÷ 2 * (-4) + 8", "respuesta": "-22" },
+    { "pregunta": "10 - (-8)*3 ÷ 2 + 6", "respuesta": "+28" },
+    { "pregunta": "(-12) + 5*4 - 20 ÷ (-4)", "respuesta": "+13" },
+    { "pregunta": "6*5 - (-15) ÷ 3 + (-2)", "respuesta": "+33" },
+    { "pregunta": "(-10) + 8 ÷ 2 * 3 - 7", "respuesta": "-5" },
+    { "pregunta": "15 - (-6) ÷ 2 + 4*2", "respuesta": "+26" },
+    { "pregunta": "(-14) + 9*2 ÷ 3 - 5", "respuesta": "-13" },
+    { "pregunta": "8 + (-12) ÷ 4 * 3 + 2", "respuesta": "+1" },
+    { "pregunta": "(-16) + 10 ÷ 2 * (-3) + 5", "respuesta": "-26" },
+    { "pregunta": "12*2 - (-8) ÷ 4 + (-6)", "respuesta": "+20" },
+    { "pregunta": "(-20) ÷ 5 + 6*4 - 10", "respuesta": "+10" },
+    { "pregunta": "9 + (-6)*2 ÷ 3 - 3", "respuesta": "+2" },
+    { "pregunta": "(-18) + 12 ÷ 4 * 2 + 7", "respuesta": "-5" },
+    { "pregunta": "15 - (-10)*3 ÷ 5 + 6", "respuesta": "+27" },
+    { "pregunta": "(-12) + 7*3 - 21 ÷ (-7)", "respuesta": "+12" },
+    { "pregunta": "10*3 - (-9) ÷ 3 + (-4)", "respuesta": "+29" },
+    { "pregunta": "(-14) + 8 ÷ 2 * 5 - 6", "respuesta": "+0" },
+    { "pregunta": "7 + (-15) ÷ 5 * 4 + 2", "respuesta": "-3" },
+    { "pregunta": "(-16) + 6*3 ÷ 2 - 5", "respuesta": "-12" },
+    { "pregunta": "12 - (-8) ÷ 4 + 10*1", "respuesta": "+24" },
+    { "pregunta": "(-20) + 9*2 ÷ 3 - 4", "respuesta": "-18" },
+    { "pregunta": "8 + (-12) ÷ 6 * 3 + 5", "respuesta": "+7" },
+    { "pregunta": "(-18) + 10 ÷ 2 * (-2) + 6", "respuesta": "-22" },
+    { "pregunta": "15*2 - (-10) ÷ 5 + (-3)", "respuesta": "+29" },
+    { "pregunta": "(-12) + 8 ÷ 4 * 5 - 7", "respuesta": "-9" }
+];
+
+// Iniciar prueba con 3 aciertos necesarios
+window.onload = () => iniciarPrueba(preguntasEj7, 3);
+</script>
+</body>
+</html>
