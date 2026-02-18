@@ -1,156 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Ejercicio 7 - Rodrigo Vives de Andreis</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f4f8;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background-color: #1e3a8a;
-      color: white;
-      padding: 20px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-    header h2 {
-      margin: 5px 0 0 0;
-      font-size: 18px;
-      font-weight: normal;
-    }
-    main {
-      max-width: 700px;
-      margin: 30px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .pregunta {
-      margin-bottom: 20px;
-      font-size: 18px;
-    }
-    input[type="text"] {
-      width: 100px;
-      padding: 5px;
-      font-size: 16px;
-      margin-left: 10px;
-    }
-    button {
-      background-color: #1e3a8a;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-    button#volver {
-      background-color: #6b7280;
-      margin-top: 20px;
-    }
-    .resultado {
-      margin-top: 20px;
-      font-weight: bold;
-      font-size: 18px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicio 7 - Operaciones Combinadas</title>
+<link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
-  <header>
-    <h1>Colegio Rodrigo Vives de Andreis</h1>
-    <h2>Docente de Matemáticas: Manuel Villamizar | Año 2026</h2>
-  </header>
-  <main>
-    <h2>Ejercicio 7 - Operaciones combinadas</h2>
-    <div id="preguntas"></div>
-    <button onclick="validarRespuesta()">Validar respuesta</button>
-    <div class="resultado" id="resultado"></div>
-    <button id="volver" onclick="window.location.href='index.html'">Volver al menú principal</button>
-  </main>
+<div class="container">
+    <h2>Ejercicio 7: Operaciones combinadas con enteros</h2>
 
-  <script>
-    const preguntasEj7 = [
-      {pregunta: "10 + 5*2 - 20÷(-2) + (-2)", respuesta: "+28"},
-      {pregunta: "(-12) + 18÷3 * (-2) - 4", respuesta: "-28"},
-      {pregunta: "15 - 3*4 + (-6)÷2", respuesta: "0"},
-      {pregunta: "(-10) + 4*3 - (-8)÷2", respuesta: "+6"},
-      {pregunta: "20÷5 + 3*4 - 7", respuesta: "+9"},
-      {pregunta: "(-12)÷3 + 5*2 - (-4)", respuesta: "+10"},
-      {pregunta: "8 + (-6)*2 ÷ 2 - 1", respuesta: "+1"},
-      {pregunta: "(-15) + 6÷2 * 4 - 5", respuesta: "-8"},
-      {pregunta: "9*2 - (-12)÷3 + (-3)", respuesta: "+19"},
-      {pregunta: "(-20)÷5 + 7*3 - 4", respuesta: "+13"},
-      {pregunta: "6*5 - (-10)÷2 + (-6)", respuesta: "+29"},
-      {pregunta: "(-18) + 9÷3 * (-2) + 5", respuesta: "-19"},
-      {pregunta: "12 - (-6)*2 + 8 ÷ (-4)", respuesta: "+22"},
-      {pregunta: "(-14) + 8*2 - 12 ÷ (-3)", respuesta: "+6"},
-      {pregunta: "7 + 3*5 - (-15) ÷ 5", respuesta: "+25"},
-      {pregunta: "(-10)÷2 + 6*3 - 4", respuesta: "+9"},
-      {pregunta: "15 - (-8) ÷ 2 + 3*4", respuesta: "+31"},
-      {pregunta: "(-9) + 12 ÷ 4 * (-3) + 6", respuesta: "-12"},
-      {pregunta: "20 ÷ (-5) + 8*2 - 7", respuesta: "+5"},
-      {pregunta: "(-16) + 10 ÷ 2 * 3 - 4", respuesta: "-5"},
-      {pregunta: "5*4 - (-6) ÷ 3 + (-2)", respuesta: "+20"},
-      {pregunta: "(-12) + 8 ÷ 4 * 5 - 7", respuesta: "-9"}
-    ];
+    <label>Nombre del estudiante:</label>
+    <input type="text" id="nombre" placeholder="Escribe tu nombre">
 
-    let aciertos = 0;
-    const maxAciertos = 3;
-    let preguntasMostradas = [];
+    <div>
+        <label>Tiempo restante: </label>
+        <span id="reloj">05:00</span>
+    </div>
 
-    function mostrarPregunta() {
-      const preguntasDiv = document.getElementById("preguntas");
-      preguntasDiv.innerHTML = "";
+    <div id="pregunta"></div>
 
-      // Filtrar preguntas que no se hayan mostrado aún
-      const disponible = preguntasEj7.filter((_, i) => !preguntasMostradas.includes(i));
-      if (disponible.length === 0) return;
+    <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+    <button id="btnValidar">Validar respuesta</button>
 
-      // Elegir pregunta aleatoria
-      const index = Math.floor(Math.random() * disponible.length);
-      const pregunta = disponible[index];
-      preguntasMostradas.push(preguntasEj7.indexOf(pregunta));
+    <div id="mensaje"></div>
+    <div id="aciertosContador">Aciertos: 0 / 3</div>
 
-      const div = document.createElement("div");
-      div.classList.add("pregunta");
-      div.innerHTML = `<label>${pregunta.pregunta} = </label>
-                       <input type="text" id="respuestaUsuario">`;
-      preguntasDiv.appendChild(div);
-    }
+    <p><a href="index.html">⬅ Volver al menú principal</a></p>
+</div>
 
-    function validarRespuesta() {
-      const input = document.getElementById("respuestaUsuario");
-      if (!input) return;
+<script>
 
-      const ultimaPregunta = preguntasEj7[preguntasMostradas[preguntasMostradas.length-1]];
-      let respuesta = input.value.trim();
+const preguntasEj7 = [
+{pregunta:"10 + 5*2 - 20÷(-2) + (-2)",respuesta:"+28"},
+{pregunta:"(-12) + 18÷3 * (-2) - 4",respuesta:"-28"},
+{pregunta:"15 - 3*4 + (-6)÷2",respuesta:"0"},
+{pregunta:"(-10) + 4*3 - (-8)÷2",respuesta:"+6"},
+{pregunta:"20÷5 + 3*4 - 7",respuesta:"+9"},
+{pregunta:"(-12)÷3 + 5*2 - (-4)",respuesta:"+10"},
+{pregunta:"8 + (-6)*2 ÷ 2 - 1",respuesta:"+1"},
+{pregunta:"(-15) + 6÷2 * 4 - 5",respuesta:"-8"},
+{pregunta:"9*2 - (-12)÷3 + (-3)",respuesta:"+19"},
+{pregunta:"(-20)÷5 + 7*3 - 4",respuesta:"+13"},
+{pregunta:"6*5 - (-10)÷2 + (-6)",respuesta:"+29"},
+{pregunta:"(-18) + 9÷3 * (-2) + 5",respuesta:"-19"},
+{pregunta:"12 - (-6)*2 + 8 ÷ (-4)",respuesta:"+22"},
+{pregunta:"(-14) + 8*2 - 12 ÷ (-3)",respuesta:"+6"},
+{pregunta:"7 + 3*5 - (-15) ÷ 5",respuesta:"+25"},
+{pregunta:"(-10)÷2 + 6*3 - 4",respuesta:"+9"},
+{pregunta:"15 - (-8) ÷ 2 + 3*4",respuesta:"+31"},
+{pregunta:"(-9) + 12 ÷ 4 * (-3) + 6",respuesta:"-12"},
+{pregunta:"20 ÷ (-5) + 8*2 - 7",respuesta:"+5"},
+{pregunta:"(-16) + 10 ÷ 2 * 3 - 4",respuesta:"-5"},
+{pregunta:"5*4 - (-6) ÷ 3 + (-2)",respuesta:"+20"},
+{pregunta:"(-12) ÷ 4 + 3*5 - 7",respuesta:"+5"},
+{pregunta:"10 + (-8)*2 ÷ 4 - 3",respuesta:"+3"},
+{pregunta:"(-14) + 6 ÷ 3 * 5 - 2",respuesta:"-6"},
+{pregunta:"8*3 - (-9) ÷ 3 + (-5)",respuesta:"+22"},
+{pregunta:"(-20) ÷ 4 + 7*2 - 6",respuesta:"+3"},
+{pregunta:"9 + 5*3 - (-12) ÷ 4",respuesta:"+27"},
+{pregunta:"(-18) + 8 ÷ 2 * (-3) + 10",respuesta:"-20"},
+{pregunta:"12 - (-6) ÷ 3 + 4*2",respuesta:"+22"},
+{pregunta:"(-15) + 9*2 ÷ 3 - 5",respuesta:"-14"},
+{pregunta:"7 + (-4)*3 + 12 ÷ (-2)",respuesta:"-11"},
+{pregunta:"(-10) + 5*4 - 20 ÷ (-5)",respuesta:"+14"},
+{pregunta:"6*3 - (-12) ÷ 4 + (-7)",respuesta:"+14"},
+{pregunta:"(-12) + 8 ÷ 2 * 3 - 5",respuesta:"-5"},
+{pregunta:"15 - (-9)*2 ÷ 3 + 6",respuesta:"+27"},
+{pregunta:"(-8) + 10 ÷ 2 * (-2) + 4",respuesta:"-14"},
+{pregunta:"9*4 - (-16) ÷ 8 + (-3)",respuesta:"+35"},
+{pregunta:"(-20) ÷ 5 + 6*3 - 7",respuesta:"+7"},
+{pregunta:"12 + (-6)*2 ÷ 3 - 4",respuesta:"+4"},
+{pregunta:"(-14) + 5*3 - 15 ÷ (-3)",respuesta:"+6"},
+{pregunta:"8*2 - (-10) ÷ 5 + (-6)",respuesta:"+12"},
+{pregunta:"(-16) + 12 ÷ 4 * 2 - 3",respuesta:"-13"},
+{pregunta:"7 + 9*2 ÷ (-3) - 5",respuesta:"-4"},
+{pregunta:"(-18) + 6 ÷ 2 * (-4) + 8",respuesta:"-22"},
+{pregunta:"10 - (-8)*3 ÷ 2 + 6",respuesta:"+28"},
+{pregunta:"(-12) + 5*4 - 20 ÷ (-4)",respuesta:"+13"},
+{pregunta:"6*5 - (-15) ÷ 3 + (-2)",respuesta:"+33"},
+{pregunta:"(-10) + 8 ÷ 2 * 3 - 7",respuesta:"-5"},
+{pregunta:"15 - (-6) ÷ 2 + 4*2",respuesta:"+26"},
+{pregunta:"(-14) + 9*2 ÷ 3 - 5",respuesta:"-13"},
+{pregunta:"8 + (-12) ÷ 4 * 3 + 2",respuesta:"+1"},
+{pregunta:"(-16) + 10 ÷ 2 * (-3) + 5",respuesta:"-26"},
+{pregunta:"12*2 - (-8) ÷ 4 + (-6)",respuesta:"+20"},
+{pregunta:"(-20) ÷ 5 + 6*4 - 10",respuesta:"+10"},
+{pregunta:"9 + (-6)*2 ÷ 3 - 3",respuesta:"+2"},
+{pregunta:"(-18) + 12 ÷ 4 * 2 + 7",respuesta:"-5"},
+{pregunta:"15 - (-10)*3 ÷ 5 + 6",respuesta:"+27"},
+{pregunta:"(-12) + 7*3 - 21 ÷ (-7)",respuesta:"+12"},
+{pregunta:"10*3 - (-9) ÷ 3 + (-4)",respuesta:"+29"},
+{pregunta:"(-14) + 8 ÷ 2 * 5 - 6",respuesta:"+0"},
+{pregunta:"7 + (-15) ÷ 5 * 4 + 2",respuesta:"-3"},
+{pregunta:"(-16) + 6*3 ÷ 2 - 5",respuesta:"-12"},
+{pregunta:"12 - (-8) ÷ 4 + 10*1",respuesta:"+24"},
+{pregunta:"(-20) + 9*2 ÷ 3 - 4",respuesta:"-18"},
+{pregunta:"8 + (-12) ÷ 6 * 3 + 5",respuesta:"+7"},
+{pregunta:"(-18) + 10 ÷ 2 * (-2) + 6",respuesta:"-22"},
+{pregunta:"15*2 - (-10) ÷ 5 + (-3)",respuesta:"+29"},
+{pregunta:"(-12) + 8 ÷ 4 * 5 - 7",respuesta:"-9"}
+];
 
-      // Acepta "+" opcional al inicio
-      if (respuesta === ultimaPregunta.respuesta || respuesta === ("+" + ultimaPregunta.respuesta.replace("+",""))) {
+let aciertos = 0;
+let tiempo = 5 * 60;
+let preguntaActual;
+const meta = 3;
+
+function iniciarPrueba(preguntas){
+    mostrarPreguntaAleatoria(preguntas);
+    actualizarReloj();
+
+    const timer = setInterval(()=>{
+        tiempo--;
+        actualizarReloj();
+        if(tiempo<=0){
+            clearInterval(timer);
+            alert("Se acabó el tiempo. La prueba se reinicia.");
+            reiniciarPrueba();
+        }
+    },1000);
+
+    document.getElementById("btnValidar").onclick = validarRespuesta;
+    document.getElementById("respuesta").addEventListener("keydown",function(e){
+        if(e.key==="Enter") validarRespuesta();
+    });
+}
+
+function mostrarPreguntaAleatoria(preguntas){
+    const index = Math.floor(Math.random()*preguntas.length);
+    preguntaActual = preguntas[index];
+    document.getElementById("pregunta").innerText = preguntaActual.pregunta;
+    document.getElementById("respuesta").value="";
+    document.getElementById("mensaje").innerText="";
+}
+
+function validarRespuesta(){
+    const respuestaUsuario = document.getElementById("respuesta").value.trim();
+
+    if(Number(respuestaUsuario) === Number(preguntaActual.respuesta)){
         aciertos++;
-      }
+        document.getElementById("aciertosContador").innerText =
+        `Aciertos: ${aciertos} / ${meta}`;
 
-      if (aciertos >= maxAciertos) {
-        document.getElementById("resultado").innerText = `¡Felicidades! Lograste ${aciertos} aciertos.`;
-        document.getElementById("preguntas").innerHTML = "";
-      } else {
-        mostrarPregunta();
-      }
+        if(aciertos >= meta){
+            alert("¡Felicidades! Pasaste el Ejercicio 7.");
+            reiniciarPrueba();
+            return;
+        }
+
+        mostrarPreguntaAleatoria(preguntasEj7);
+    }else{
+        document.getElementById("mensaje").innerText =
+        "Respuesta incorrecta. Intenta otra pregunta.";
     }
+}
 
-    // Mostrar la primera pregunta al cargar
-    window.onload = () => mostrarPregunta();
-  </script>
+function reiniciarPrueba(){
+    aciertos=0;
+    tiempo=5*60;
+    document.getElementById("aciertosContador").innerText =
+    `Aciertos: 0 / ${meta}`;
+    mostrarPreguntaAleatoria(preguntasEj7);
+}
+
+function actualizarReloj(){
+    const minutos = Math.floor(tiempo/60).toString().padStart(2,'0');
+    const segundos = (tiempo%60).toString().padStart(2,'0');
+    document.getElementById("reloj").innerText=`${minutos}:${segundos}`;
+}
+
+window.onload = ()=> iniciarPrueba(preguntasEj7);
+
+</script>
 </body>
 </html>
-
 
