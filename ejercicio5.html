@@ -32,38 +32,66 @@
 <script>
 
 const preguntasEj5 = [
-{pregunta:"A las 6:00 a.m. la temperatura era de 5 grados bajo cero. Durante la mañana subió 8 grados y en la tarde bajó 6 grados. ¿Cuál es la temperatura final?",respuesta:"-3"},
-{pregunta:"La temperatura era de 12 grados. En la noche descendió 18 grados y al amanecer aumentó 9 grados. ¿Cuál es la temperatura final?",respuesta:"+3"},
-{pregunta:"A medianoche había 3 grados bajo cero. Bajó 4 grados más y luego subió 10 grados. ¿Cuál es la temperatura final?",respuesta:"+3"},
-{pregunta:"La temperatura inicial era de 7 grados. Descendió 15 grados y luego aumentó 4 grados. ¿Cuál es la temperatura final?",respuesta:"-4"},
-{pregunta:"Un día comenzó con 9 grados bajo cero. Subió 13 grados y luego bajó 8 grados. ¿Cuál es la temperatura final?",respuesta:"-4"},
-{pregunta:"La temperatura estaba en 4 grados. Bajó 6 grados, luego bajó 3 grados más y finalmente subió 5 grados. ¿Cuál es la temperatura final?",respuesta:"0"},
-{pregunta:"Un día inició con 2 grados bajo cero. Aumentó 7 grados y luego disminuyó 9 grados. ¿Cuál es la temperatura final?",respuesta:"-4"},
-{pregunta:"La temperatura era de 15 grados. Bajó 20 grados y luego subió 6 grados. ¿Cuál es la temperatura final?",respuesta:"+1"},
-{pregunta:"A las 5:00 a.m. había 6 grados bajo cero. Subió 11 grados y después descendió 5 grados. ¿Cuál es la temperatura final?",respuesta:"0"},
-{pregunta:"La temperatura era de 10 grados. Bajó 12 grados y luego volvió a subir 3 grados. ¿Cuál es la temperatura final?",respuesta:"+1"},
-{pregunta:"Un submarino está a 200 metros bajo el nivel del mar. Desciende 50 metros más y luego asciende 130 metros. ¿Dónde queda?",respuesta:"-120"},
-{pregunta:"Un buzo está a 35 metros bajo el nivel del mar. Asciende 12 metros, desciende 20 metros y asciende 5 metros. ¿Cuál es su posición final?",respuesta:"-38"},
-{pregunta:"Un pez salta 4 metros sobre el nivel del mar. Luego se sumerge 9 metros y después asciende 3 metros. ¿Dónde queda?",respuesta:"-2"},
-{pregunta:"Una excavación alcanza 18 metros bajo el nivel del suelo. Se excavan 7 metros más y luego se rellenan 10 metros. ¿Cuál es la profundidad final?",respuesta:"-15"},
-{pregunta:"Un ascensor parte del piso 6. Baja 9 pisos y luego sube 4 pisos. ¿En qué piso termina?",respuesta:"+1"},
-{pregunta:"Un ascensor está en el piso 3. Sube 8 pisos, baja 10 pisos y sube 2 pisos. ¿Dónde termina?",respuesta:"+3"},
-{pregunta:"Desde el piso 5 un ascensor baja 12 pisos y luego sube 6 pisos. ¿En qué piso queda?",respuesta:"-1"},
-{pregunta:"Un ascensor está en el sótano 2. Sube 5 pisos y luego baja 7 pisos. ¿Dónde queda?",respuesta:"-4"},
-{pregunta:"Desde el piso 10 baja 15 pisos y luego sube 9 pisos. ¿En qué piso termina?",respuesta:"+4"},
-{pregunta:"Una persona nació en el año 320 antes de Cristo y vivió 67 años. ¿En qué año murió?",respuesta:"-253"},
-{pregunta:"Una persona nació en el año 25 antes de Cristo y murió en el año 40 después de Cristo. ¿Cuántos años vivió?",respuesta:"65"},
-{pregunta:"Una persona nació en el año 80 antes de Cristo y murió en el año 20 después de Cristo. ¿Cuántos años vivió?",respuesta:"100"},
-{pregunta:"Una ciudad fue fundada en el año 500 antes de Cristo y existió durante 350 años. ¿En qué año desapareció?",respuesta:"-150"},
-{pregunta:"Una persona nació en el año 75 antes de Cristo y murió en el año 25 antes de Cristo. ¿Cuántos años vivió?",respuesta:"50"},
-{pregunta:"Un filósofo nació en el año 15 antes de Cristo y murió en el año 45 después de Cristo. ¿Cuántos años vivió?",respuesta:"60"},
-{pregunta:"Un submarino está a 350 metros bajo el nivel del mar. Asciende 120 metros y luego desciende 200 metros. ¿Dónde queda?",respuesta:"-430"},
-{pregunta:"Un ascensor está en el piso 9. Baja 14 pisos y luego sube 5 pisos. ¿Dónde termina?",respuesta:"0"},
-{pregunta:"Un buzo está a 60 metros bajo el nivel del mar. Asciende 25 metros y luego asciende 50 metros más. ¿Dónde queda?",respuesta:"+15"},
-{pregunta:"Un ascensor está en el sótano 3. Sube 10 pisos y baja 8 pisos. ¿En qué piso termina?",respuesta:"-1"},
-{pregunta:"Un submarino está a 90 metros bajo el nivel del mar. Desciende 40 metros y luego asciende 70 metros. ¿Dónde queda?",respuesta:"-60"},
-{pregunta:"Un ascensor parte del piso 4. Baja 9 pisos y luego sube 2 pisos. ¿En qué piso termina?",respuesta:"-3"},
-{pregunta:"La temperatura era de 2 grados bajo cero. Subió 6 grados y luego bajó 9 grados. ¿Cuál es la temperatura final?",respuesta:"-5"}
+{pregunta:`A las 6:00 a.m. la temperatura era de 5 grados bajo cero. Durante la mañana subió 8 grados y en la tarde bajó 6 grados. ¿Cuál es la temperatura final?`,respuesta:-3},
+{pregunta:`La temperatura era de 12 grados. En la noche descendió 18 grados y al amanecer aumentó 9 grados. ¿Cuál es la temperatura final?`,respuesta:3},
+{pregunta:`A medianoche había 3 grados bajo cero. Bajó 4 grados más y luego subió 10 grados. ¿Cuál es la temperatura final?`,respuesta:3},
+{pregunta:`La temperatura inicial era de 7 grados. Descendió 15 grados y luego aumentó 4 grados. ¿Cuál es la temperatura final?`,respuesta:-4},
+{pregunta:`Un día comenzó con 9 grados bajo cero. Subió 13 grados y luego bajó 8 grados. ¿Cuál es la temperatura final?`,respuesta:-4},
+{pregunta:`La temperatura estaba en 4 grados. Bajó 6 grados, luego bajó 3 grados más y finalmente subió 5 grados. ¿Cuál es la temperatura final?`,respuesta:0},
+{pregunta:`Un día inició con 2 grados bajo cero. Aumentó 7 grados y luego disminuyó 9 grados. ¿Cuál es la temperatura final?`,respuesta:-4},
+{pregunta:`La temperatura era de 15 grados. Bajó 20 grados y luego subió 6 grados. ¿Cuál es la temperatura final?`,respuesta:1},
+{pregunta:`A las 5:00 a.m. había 6 grados bajo cero. Subió 11 grados y después descendió 5 grados. ¿Cuál es la temperatura final?`,respuesta:0},
+{pregunta:`La temperatura era de 10 grados. Bajó 12 grados y luego volvió a subir 3 grados. ¿Cuál es la temperatura final?`,respuesta:1},
+{pregunta:`Una montaña mide 1800 metros. Un derrumbe reduce 250 metros y luego otro reduce 120 metros más. ¿Cuál es la nueva altura?`,respuesta:1430},
+{pregunta:`Un submarino está a 200 metros bajo el nivel del mar. Desciende 50 metros más y luego asciende 130 metros. ¿Dónde queda?`,respuesta:-120},
+{pregunta:`Un buzo está a 35 metros bajo el nivel del mar. Asciende 12 metros, desciende 20 metros y asciende 5 metros. ¿Cuál es su posición final?`,respuesta:-38},
+{pregunta:`Una montaña está a 950 metros sobre el nivel del mar. Pierde 125 metros y luego pierde 175 metros más. ¿Cuál es su nueva altura?`,respuesta:650},
+{pregunta:`Un pez salta 4 metros sobre el nivel del mar. Luego se sumerge 9 metros y después asciende 3 metros. ¿Dónde queda?`,respuesta:-2},
+{pregunta:`Una excavación alcanza 18 metros bajo el nivel del suelo. Se excavan 7 metros más y luego se rellenan 10 metros. ¿Cuál es la profundidad final?`,respuesta:-15},
+{pregunta:`Un globo está a 300 metros de altura. Desciende 80 metros, asciende 40 metros y luego desciende 120 metros. ¿Cuál es la altura final?`,respuesta:140},
+{pregunta:`Un avión vuela a 5000 metros. Desciende 1500 metros, asciende 600 metros y vuelve a descender 900 metros. ¿A qué altura queda?`,respuesta:3200},
+{pregunta:`Un submarino está a 120 metros bajo el nivel del mar. Asciende 50 metros, desciende 80 metros y asciende 30 metros. ¿Dónde queda?`,respuesta:-120},
+{pregunta:`Una montaña mide 2100 metros. Pierde 300 metros, gana 75 metros y pierde 125 metros. ¿Cuál es su altura final?`,respuesta:1750},
+{pregunta:`Un ascensor parte del piso 6. Baja 9 pisos y luego sube 4 pisos. ¿En qué piso termina?`,respuesta:1},
+{pregunta:`Un edificio tiene 4 sótanos. Desde el nivel de la calle baja al sótano 4 y luego sube 7 pisos. ¿En qué piso queda?`,respuesta:3},
+{pregunta:`Un ascensor está en el piso 3. Sube 8 pisos, baja 10 pisos y sube 2 pisos. ¿Dónde termina?`,respuesta:3},
+{pregunta:`Desde el piso 5 un ascensor baja 12 pisos y luego sube 6 pisos. ¿En qué piso queda?`,respuesta:-1},
+{pregunta:`Un ascensor está en el sótano 2. Sube 5 pisos y luego baja 7 pisos. ¿Dónde queda?`,respuesta:-4},
+{pregunta:`Desde el piso 10 baja 15 pisos y luego sube 9 pisos. ¿En qué piso termina?`,respuesta:4},
+{pregunta:`Un ascensor parte del nivel de la calle. Baja 3 sótanos, sube 8 pisos y baja 6 pisos. ¿Dónde queda?`,respuesta:-1},
+{pregunta:`Desde el piso 7 sube 4 pisos y luego baja 15 pisos. ¿En qué piso termina?`,respuesta:-4},
+{pregunta:`Un ascensor parte del sótano 5. Sube 12 pisos y luego baja 4 pisos. ¿Dónde queda?`,respuesta:3},
+{pregunta:`Desde el piso 2 baja 6 pisos y luego sube 3 pisos. ¿En qué piso termina?`,respuesta:-1},
+{pregunta:`Una persona nació en el año 320 antes de Cristo y vivió 67 años. ¿En qué año murió?`,respuesta:-253},
+{pregunta:`Un filósofo nació en el año 450 antes de Cristo y murió en el año 380 antes de Cristo. ¿Cuántos años vivió?`,respuesta:70},
+{pregunta:`Una persona nació en el año 25 antes de Cristo y murió en el año 40 después de Cristo. ¿Cuántos años vivió?`,respuesta:65},
+{pregunta:`Un personaje histórico nació en el año 120 antes de Cristo y vivió 75 años. ¿En qué año murió?`,respuesta:-45},
+{pregunta:`Una civilización comenzó en el año 600 antes de Cristo y terminó en el año 250 antes de Cristo. ¿Cuántos años duró?`,respuesta:350},
+{pregunta:`Una persona nació en el año 80 antes de Cristo y murió en el año 20 después de Cristo. ¿Cuántos años vivió?`,respuesta:100},
+{pregunta:`Un emperador nació en el año 10 antes de Cristo y murió en el año 30 después de Cristo. ¿Cuántos años vivió?`,respuesta:40},
+{pregunta:`Una ciudad fue fundada en el año 500 antes de Cristo y existió durante 350 años. ¿En qué año desapareció?`,respuesta:-150},
+{pregunta:`Un matemático nació en el año 200 antes de Cristo y murió en el año 150 antes de Cristo. ¿Cuántos años vivió?`,respuesta:50},
+{pregunta:`Una persona nació en el año 75 antes de Cristo y murió en el año 25 antes de Cristo. ¿Cuántos años vivió?`,respuesta:50},
+{pregunta:`Un filósofo nació en el año 15 antes de Cristo y murió en el año 45 después de Cristo. ¿Cuántos años vivió?`,respuesta:60},
+{pregunta:`Una cultura apareció en el año 700 antes de Cristo y terminó en el año 200 antes de Cristo. ¿Cuántos años duró?`,respuesta:500},
+{pregunta:`Una persona nació en el año 300 antes de Cristo y vivió 120 años. ¿En qué año murió?`,respuesta:-180},
+{pregunta:`Un líder nació en el año 60 antes de Cristo y murió en el año 10 después de Cristo. ¿Cuántos años vivió?`,respuesta:70},
+{pregunta:`Una civilización comenzó en el año 450 antes de Cristo y duró 200 años. ¿En qué año terminó?`,respuesta:-250},
+{pregunta:`A medianoche la temperatura era de 8 grados bajo cero. Subió 12 grados y luego bajó 15 grados. ¿Cuál es la temperatura final?`,respuesta:-11},
+{pregunta:`Un submarino está a 350 metros bajo el nivel del mar. Asciende 120 metros y luego desciende 200 metros. ¿Dónde queda?`,respuesta:-430},
+{pregunta:`Una montaña mide 1600 metros. Pierde 300 metros, gana 150 metros y pierde 200 metros. ¿Cuál es la altura final?`,respuesta:1250},
+{pregunta:`Un ascensor está en el piso 9. Baja 14 pisos y luego sube 5 pisos. ¿Dónde termina?`,respuesta:0},
+{pregunta:`La temperatura era de 14 grados. Bajó 22 grados y luego subió 9 grados. ¿Cuál es la temperatura final?`,respuesta:1},
+{pregunta:`Un buzo está a 60 metros bajo el nivel del mar. Asciende 25 metros y luego asciende 50 metros más. ¿Dónde queda?`,respuesta:15},
+{pregunta:`Una excavación está a 40 metros bajo el nivel del suelo. Se excavan 15 metros más y luego se rellenan 20 metros. ¿Cuál es la profundidad final?`,respuesta:-35},
+{pregunta:`La temperatura era de 6 grados bajo cero. Bajó 5 grados y luego subió 13 grados. ¿Cuál es la temperatura final?`,respuesta:2},
+{pregunta:`Un avión vuela a 4200 metros. Desciende 1000 metros y luego desciende 1500 metros más. ¿A qué altura queda?`,respuesta:1700},
+{pregunta:`Un ascensor está en el sótano 3. Sube 10 pisos y baja 8 pisos. ¿En qué piso termina?`,respuesta:-1},
+{pregunta:`Una montaña mide 2500 metros. Pierde 400 metros y luego pierde 600 metros más. ¿Cuál es la altura final?`,respuesta:1500},
+{pregunta:`La temperatura era de 11 grados. Bajó 17 grados y luego subió 5 grados. ¿Cuál es la temperatura final?`,respuesta:-1},
+{pregunta:`Un submarino está a 90 metros bajo el nivel del mar. Desciende 40 metros y luego asciende 70 metros. ¿Dónde queda?`,respuesta:-60},
+{pregunta:`Un ascensor parte del piso 4. Baja 9 pisos y luego sube 2 pisos. ¿En qué piso termina?`,respuesta:-3},
+{pregunta:`La temperatura era de 2 grados bajo cero. Subió 6 grados y luego bajó 9 grados. ¿Cuál es la temperatura final?`,respuesta:-5}
 ];
 
 let aciertos = 0;
@@ -71,8 +99,8 @@ let tiempo = 5 * 60;
 let preguntaActual;
 const meta = 3;
 
-function iniciarPrueba(preguntas){
-    mostrarPreguntaAleatoria(preguntas);
+function iniciarPrueba(){
+    mostrarPreguntaAleatoria();
     actualizarReloj();
 
     const timer = setInterval(()=>{
@@ -81,7 +109,7 @@ function iniciarPrueba(preguntas){
         if(tiempo<=0){
             clearInterval(timer);
             alert("Se acabó el tiempo. La prueba se reinicia.");
-            reiniciarPrueba();
+            location.reload();
         }
     },1000);
 
@@ -91,41 +119,32 @@ function iniciarPrueba(preguntas){
     });
 }
 
-function mostrarPreguntaAleatoria(preguntas){
-    const index = Math.floor(Math.random()*preguntas.length);
-    preguntaActual = preguntas[index];
+function mostrarPreguntaAleatoria(){
+    const index = Math.floor(Math.random()*preguntasEj5.length);
+    preguntaActual = preguntasEj5[index];
     document.getElementById("pregunta").innerText = preguntaActual.pregunta;
     document.getElementById("respuesta").value="";
     document.getElementById("mensaje").innerText="";
 }
 
 function validarRespuesta(){
-    const respuestaUsuario = document.getElementById("respuesta").value.trim();
+    const respuestaUsuario = Number(document.getElementById("respuesta").value.trim());
 
-    if(Number(respuestaUsuario) === Number(preguntaActual.respuesta)){
+    if(respuestaUsuario === preguntaActual.respuesta){
         aciertos++;
         document.getElementById("aciertosContador").innerText =
         `Aciertos: ${aciertos} / ${meta}`;
 
         if(aciertos >= meta){
             alert("¡Felicidades! Pasaste el Ejercicio 5.");
-            reiniciarPrueba();
-            return;
+            location.reload();
+        } else {
+            mostrarPreguntaAleatoria();
         }
-
-        mostrarPreguntaAleatoria(preguntasEj5);
     }else{
         document.getElementById("mensaje").innerText =
         "Respuesta incorrecta. Intenta otra pregunta.";
     }
-}
-
-function reiniciarPrueba(){
-    aciertos=0;
-    tiempo=5*60;
-    document.getElementById("aciertosContador").innerText =
-    `Aciertos: 0 / ${meta}`;
-    mostrarPreguntaAleatoria(preguntasEj5);
 }
 
 function actualizarReloj(){
@@ -134,10 +153,8 @@ function actualizarReloj(){
     document.getElementById("reloj").innerText=`${minutos}:${segundos}`;
 }
 
-window.onload = ()=> iniciarPrueba(preguntasEj5);
+window.onload = iniciarPrueba;
 
 </script>
 </body>
 </html>
-
-
