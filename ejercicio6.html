@@ -3,94 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ejercicio 6 - Multiplicación y División</title>
+<title>Ejercicio 6 - Multiplicación y División de Enteros</title>
 <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
 <div class="container">
-    <h2>Ejercicio 6: Multiplicación y División de Números Enteros</h2>
+    <h2>Ejercicio 6: Multiplicación y División de Enteros</h2>
+
     <label>Nombre del estudiante:</label>
     <input type="text" id="nombre" placeholder="Escribe tu nombre">
+
     <div>
         <label>Tiempo restante: </label>
         <span id="reloj">05:00</span>
     </div>
+
     <div id="pregunta"></div>
+
     <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
     <button id="btnValidar">Validar respuesta</button>
+
     <div id="mensaje"></div>
     <div id="aciertosContador">Aciertos: 0 / 5</div>
 
     <p><a href="index.html">⬅ Volver al menú principal</a></p>
 </div>
 
-<script src="js/logica.js"></script>
 <script>
+
 const preguntasEj6 = [
-    { "pregunta": "(-5)*2*(-6)*3", "respuesta": "+180" },
-    { "pregunta": "4*(-3)*(-2)*5", "respuesta": "+120" },
-    { "pregunta": "(-7)*(-2)*3*(-1)", "respuesta": "-42" },
-    { "pregunta": "6*7*(-1)*(-2)", "respuesta": "+84" },
-    { "pregunta": "(-8)*(-5)*(-1)*2", "respuesta": "-80" },
-    { "pregunta": "3*4*(-2)*(-5)", "respuesta": "+120" },
-    { "pregunta": "(-9)*(-3)*(-2)*1", "respuesta": "-54" },
-    { "pregunta": "7*(-4)*(-1)*(-2)", "respuesta": "-56" },
-    { "pregunta": "(-6)*2*3*(-1)", "respuesta": "+36" },
-    { "pregunta": "5*(-5)*(-2)*(-1)", "respuesta": "-50" },
-    { "pregunta": "(-10)*(-2)*(-3)*1", "respuesta": "-60" },
-    { "pregunta": "4*5*(-1)*(-2)", "respuesta": "+40" },
-    { "pregunta": "(-7)*3*2*(-1)", "respuesta": "+42" },
-    { "pregunta": "6*(-6)*(-2)*1", "respuesta": "+72" },
-    { "pregunta": "(-8)*2*(-3)*(-1)", "respuesta": "-48" },
-    { "pregunta": "3*4*5*(-2)", "respuesta": "-120" },
-    { "pregunta": "(-9)*(-1)*(-4)*2", "respuesta": "-72" },
-    { "pregunta": "5*(-3)*(-2)*(-1)", "respuesta": "-30" },
-    { "pregunta": "(-6)*(-5)*2*(-1)", "respuesta": "-60" },
-    { "pregunta": "4*(-2)*(-3)*1", "respuesta": "+24" },
-    { "pregunta": "(-100)÷50÷(-2)÷(-1)", "respuesta": "-1" },
-    { "pregunta": "120÷(-4)÷(-3)", "respuesta": "+10" },
-    { "pregunta": "(-144)÷(-12)÷2", "respuesta": "+6" },
-    { "pregunta": "90÷(-5)÷(-3)", "respuesta": "+6" },
-    { "pregunta": "(-72)÷8÷(-3)", "respuesta": "+3" },
-    { "pregunta": "200÷(-10)÷(-2)", "respuesta": "+10" },
-    { "pregunta": "(-60)÷(-5)÷3", "respuesta": "+4" },
-    { "pregunta": "81÷(-9)÷(-3)", "respuesta": "+3" },
-    { "pregunta": "(-56)÷7÷(-2)", "respuesta": "+4" },
-    { "pregunta": "100÷(-4)÷5", "respuesta": "-5" },
-    { "pregunta": "(-150)÷(-10)÷3", "respuesta": "+5" },
-    { "pregunta": "64÷(-8)÷(-2)", "respuesta": "+4" },
-    { "pregunta": "(-90)÷9÷(-1)", "respuesta": "+10" },
-    { "pregunta": "120÷(-6)÷(-2)", "respuesta": "+10" },
-    { "pregunta": "(-45)÷5÷(-3)", "respuesta": "+3" },
-    { "pregunta": "72÷(-8)÷(-3)", "respuesta": "+3" },
-    { "pregunta": "(-84)÷(-7)÷(-2)", "respuesta": "-6" },
-    { "pregunta": "96÷(-12)÷(-2)", "respuesta": "+4" },
-    { "pregunta": "(-36)÷6÷(-3)", "respuesta": "+2" },
-    { "pregunta": "50÷(-5)÷(-2)", "respuesta": "+5" },
-    { "pregunta": "100÷5*3*(-2)", "respuesta": "-120" },
-    { "pregunta": "(-48)*2÷(-4)", "respuesta": "+24" },
-    { "pregunta": "120÷(-6)*(-3)", "respuesta": "+60" },
-    { "pregunta": "(-30)*(-2)÷5", "respuesta": "+12" },
-    { "pregunta": "(-50)÷5*2*(-1)", "respuesta": "+20" },
-    { "pregunta": "60÷(-3)*(-2)", "respuesta": "+40" },
-    { "pregunta": "(-36)*3÷(-6)", "respuesta": "+18" },
-    { "pregunta": "80÷(-4)*(-5)", "respuesta": "+100" },
-    { "pregunta": "(-72)÷(-8)*(-3)", "respuesta": "-27" },
-    { "pregunta": "100÷(-10)*(-5)", "respuesta": "+50" },
-    { "pregunta": "(-45)*2÷(-5)", "respuesta": "+18" },
-    { "pregunta": "120÷(-12)*(-2)", "respuesta": "+20" },
-    { "pregunta": "(-60)*3÷(-4)", "respuesta": "+45" },
-    { "pregunta": "90÷(-9)*(-2)", "respuesta": "+20" },
-    { "pregunta": "(-48)÷6*2", "respuesta": "-16" },
-    { "pregunta": "72÷(-8)*(-3)", "respuesta": "+27" },
-    { "pregunta": "(-36)*(-2)÷6", "respuesta": "+12" },
-    { "pregunta": "60÷(-5)*(-4)", "respuesta": "+48" },
-    { "pregunta": "(-80)*2÷(-8)", "respuesta": "+20" },
-    { "pregunta": "100÷5*4*(-1)", "respuesta": "-80" }
+{pregunta:"(-5)*2*(-6)*3",respuesta:"+180"},
+{pregunta:"4*(-3)*(-2)*5",respuesta:"+120"},
+{pregunta:"(-7)*(-2)*3*(-1)",respuesta:"-42"},
+{pregunta:"6*7*(-1)*(-2)",respuesta:"+84"},
+{pregunta:"(-8)*(-5)*(-1)*2",respuesta:"-80"},
+{pregunta:"3*4*(-2)*(-5)",respuesta:"+120"},
+{pregunta:"(-9)*(-3)*(-2)*1",respuesta:"-54"},
+{pregunta:"7*(-4)*(-1)*(-2)",respuesta:"-56"},
+{pregunta:"(-6)*2*3*(-1)",respuesta:"+36"},
+{pregunta:"5*(-5)*(-2)*(-1)",respuesta:"-50"},
+{pregunta:"(-10)*(-2)*(-3)*1",respuesta:"-60"},
+{pregunta:"4*5*(-1)*(-2)",respuesta:"+40"},
+{pregunta:"(-7)*3*2*(-1)",respuesta:"+42"},
+{pregunta:"6*(-6)*(-2)*1",respuesta:"+72"},
+{pregunta:"(-8)*2*(-3)*(-1)",respuesta:"-48"},
+{pregunta:"3*4*5*(-2)",respuesta:"-120"},
+{pregunta:"(-9)*(-1)*(-4)*2",respuesta:"-72"},
+{pregunta:"5*(-3)*(-2)*(-1)",respuesta:"-30"},
+{pregunta:"(-6)*(-5)*2*(-1)",respuesta:"-60"},
+{pregunta:"4*(-2)*(-3)*1",respuesta:"+24"},
+{pregunta:"(-100)/50/(-2)/(-1)",respuesta:"-1"},
+{pregunta:"120/(-4)/(-3)",respuesta:"+10"},
+{pregunta:"(-144)/(-12)/2",respuesta:"+6"},
+{pregunta:"90/(-5)/(-3)",respuesta:"+6"},
+{pregunta:"(-72)/8/(-3)",respuesta:"+3"},
+{pregunta:"200/(-10)/(-2)",respuesta:"+10"},
+{pregunta:"(-60)/(-5)/3",respuesta:"+4"},
+{pregunta:"81/(-9)/(-3)",respuesta:"+3"},
+{pregunta:"(-56)/7/(-2)",respuesta:"+4"},
+{pregunta:"100/(-4)/5",respuesta:"-5"},
+{pregunta:"(-150)/(-10)/3",respuesta:"+5"},
+{pregunta:"64/(-8)/(-2)",respuesta:"+4"},
+{pregunta:"(-90)/9/(-1)",respuesta:"+10"},
+{pregunta:"120/(-6)/(-2)",respuesta:"+10"},
+{pregunta:"(-45)/5/(-3)",respuesta:"+3"},
+{pregunta:"72/(-8)/(-3)",respuesta:"+3"},
+{pregunta:"(-84)/(-7)/(-2)",respuesta:"-6"},
+{pregunta:"96/(-12)/(-2)",respuesta:"+4"},
+{pregunta:"(-36)/6/(-3)",respuesta:"+2"},
+{pregunta:"50/(-5)/(-2)",respuesta:"+5"},
+{pregunta:"100/5*3*(-2)",respuesta:"-120"},
+{pregunta:"(-48)*2/(-4)",respuesta:"+24"},
+{pregunta:"120/(-6)*(-3)",respuesta:"+60"},
+{pregunta:"(-30)*(-2)/5",respuesta:"+12"},
+{pregunta:"(-50)/5*2*(-1)",respuesta:"+20"},
+{pregunta:"60/(-3)*(-2)",respuesta:"+40"},
+{pregunta:"(-36)*3/(-6)",respuesta:"+18"},
+{pregunta:"80/(-4)*(-5)",respuesta:"+100"},
+{pregunta:"(-72)/(-8)*(-3)",respuesta:"-27"},
+{pregunta:"100/(-10)*(-5)",respuesta:"+50"},
+{pregunta:"(-45)*2/(-5)",respuesta:"+18"},
+{pregunta:"120/(-12)*(-2)",respuesta:"+20"},
+{pregunta:"(-60)*3/(-4)",respuesta:"+45"},
+{pregunta:"90/(-9)*(-2)",respuesta:"+20"},
+{pregunta:"(-48)/6*2",respuesta:"-16"},
+{pregunta:"72/(-8)*(-3)",respuesta:"+27"},
+{pregunta:"(-36)*(-2)/6",respuesta:"+12"},
+{pregunta:"60/(-5)*(-4)",respuesta:"+48"},
+{pregunta:"(-80)*2/(-8)",respuesta:"+20"},
+{pregunta:"100/5*4*(-1)",respuesta:"-80"}
 ];
 
-// Iniciar prueba con 5 aciertos necesarios
-window.onload = () => iniciarPrueba(preguntasEj6, 5);
+let aciertos = 0;
+let tiempo = 5 * 60;
+let preguntaActual;
+const meta = 5;
+
+function iniciarPrueba(preguntas){
+    mostrarPreguntaAleatoria(preguntas);
+    actualizarReloj();
+
+    const timer = setInterval(()=>{
+        tiempo--;
+        actualizarReloj();
+        if(tiempo<=0){
+            clearInterval(timer);
+            alert("Se acabó el tiempo. La prueba se reinicia.");
+            reiniciarPrueba();
+        }
+    },1000);
+
+    document.getElementById("btnValidar").onclick = validarRespuesta;
+    document.getElementById("respuesta").addEventListener("keydown",function(e){
+        if(e.key==="Enter") validarRespuesta();
+    });
+}
+
+function mostrarPreguntaAleatoria(preguntas){
+    const index = Math.floor(Math.random()*preguntas.length);
+    preguntaActual = preguntas[index];
+    document.getElementById("pregunta").innerText = preguntaActual.pregunta;
+    document.getElementById("respuesta").value="";
+    document.getElementById("mensaje").innerText="";
+}
+
+function validarRespuesta(){
+    const respuestaUsuario = document.getElementById("respuesta").value.trim();
+
+    if(Number(respuestaUsuario) === Number(preguntaActual.respuesta)){
+        aciertos++;
+        document.getElementById("aciertosContador").innerText =
+        `Aciertos: ${aciertos} / ${meta}`;
+
+        if(aciertos >= meta){
+            alert("¡Felicidades! Pasaste el Ejercicio 6.");
+            reiniciarPrueba();
+            return;
+        }
+
+        mostrarPreguntaAleatoria(preguntasEj6);
+    }else{
+        document.getElementById("mensaje").innerText =
+        "Respuesta incorrecta. Intenta otra pregunta.";
+    }
+}
+
+function reiniciarPrueba(){
+    aciertos=0;
+    tiempo=5*60;
+    document.getElementById("aciertosContador").innerText =
+    `Aciertos: 0 / ${meta}`;
+    mostrarPreguntaAleatoria(preguntasEj6);
+}
+
+function actualizarReloj(){
+    const minutos = Math.floor(tiempo/60).toString().padStart(2,'0');
+    const segundos = (tiempo%60).toString().padStart(2,'0');
+    document.getElementById("reloj").innerText=`${minutos}:${segundos}`;
+}
+
+window.onload = ()=> iniciarPrueba(preguntasEj6);
+
 </script>
 </body>
 </html>
+
